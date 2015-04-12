@@ -20,11 +20,11 @@
         <div class="row">
           <div class="small-12 columns">
             <div class="row collapse">
-              <div class="small-8 columns">
-                <input type="text" placeholder="Welcome" ng-model="ctrl.event.new.name">
+              <div class="small-2 columns">
+                <span class="prefix">Group</span>
               </div>
-              <div class="small-4 columns">
-                <select ng-model="ctrl.event.new.group">
+              <div class="small-10 columns">
+                <select ng-model="ctrl.event.new.group" required="true">
                   <option value="attendee">Attendee</option>
                   <option value="staff">Staff</option>
                   <option value="admin">Admin</option>
@@ -37,24 +37,64 @@
           <div class="small-12 columns">
             <div class="row collapse">
               <div class="small-2 columns">
-                <input type="date" ng-model="ctrl.event.new.start">
+                <span class="prefix">Title</span>
               </div>
-              <div class="small-2 columns">
-                <input type="time" ng-model="ctrl.event.new.starthour">
+              <div class="small-10 columns">
+                <input type="text" placeholder="Enter title" ng-model="ctrl.event.new.name">
               </div>
-              <div class="small-2 columns">
-                <input type="date" ng-model="ctrl.event.new.end">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <div class="row collapse">
+
+              <div class="small-12 medium-5 columns">
+                <div class="small-2 column">
+                  <span class="prefix">Start</span>
+                </div>
+                <div class="small-5 columns">
+                  <input type="date" ng-model="ctrl.event.new.start" required="true">
+                </div>
+                <div class="small-5 columns">
+                  <input type="time" ng-model="ctrl.event.new.starttime" required="true">
+                </div>
               </div>
-              <div class="small-2 columns">
-                <input type="time" ng-model="ctrl.event.new.endhour">
+
+              <div class="small-12 medium-5 columns">
+                <div class="small-2 columns">
+                  <span class="prefix">End</span>
+                </div>
+                <div class="small-5 columns">
+                  <input type="date" ng-model="ctrl.event.new.end" required="true">
+                </div>
+                <div class="small-5 columns">
+                  <input type="time" ng-model="ctrl.event.new.endtime" required="true">
+                </div>
               </div>
-              <div class="small-2 columns">
-                <label><input type="checkbox"
-                  ng-model="ctrl.event.new.notify"
-                  ng-true-value="true"
-                  ng-false-value="false">
-                  notify</label>
+
+              <div class="small-6 medium-2 columns end">
+                <div class="small-6 columns align-center">
+                  <label for="notify" class="center inline">Notify?</label>
+                </div>
+                <div class="small-6 columns end">
+                  <div class="switch">
+                    <input type="checkbox"
+                    ng-model="ctrl.event.new.notify"
+                    ng-true-value="true"
+                    ng-false-value="false"
+                    id="notify?">
+                    <label for="notify?"></label>
+                  </div>
+                </div>
               </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <div class="row collapse">
               <div class="small-2 columns">
                 <button class="button postfix">Add</button>
               </div>

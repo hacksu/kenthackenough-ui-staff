@@ -54,10 +54,13 @@ angular
           */
           create: function () {
             var self = this;
-            self.new.start.setHours(self.new.starthour.getHours());
-            self.new.start.setMinutes(self.new.starthour.getMinutes());
-            self.new.end.setHours(self.new.endhour.getHours());
-            self.new.end.setMinutes(self.new.endhour.getMinutes());
+            self.new.start.setHours(self.new.starttime.getHours());
+            self.new.start.setMinutes(self.new.startime.getMinutes());
+            self.new.end.setHours(self.new.endtime.getHours());
+            self.new.end.setMinutes(self.new.endtime.getMinutes());
+
+            delete self.new.starttime;
+            delete self.new.endtime;
 
             console.log(self.new);
 
@@ -65,7 +68,7 @@ angular
             Models.event.create(self.new).
             success(function (data) {
               view.errors = null;
-              //self.new = {};
+              self.new = {};
               get();
             }).
             error(function (data) {
