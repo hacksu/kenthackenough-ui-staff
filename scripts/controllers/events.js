@@ -45,7 +45,7 @@ angular
         view.event = {
 
           /**
-          * An object containing the new message
+          * An object containing the new event
           */
           new: {},
 
