@@ -438,6 +438,26 @@ angular
 
     };
 
+    view.search = {
+
+      results: [],
+      query: '',
+
+      go: function () {
+        if (this.query) {
+          Models.application.search(this.query).
+          success(function (data) {
+            view.users = data.results;
+          }).
+          error(function (data) {
+          });
+        } else {
+          reload();
+        }
+      }
+
+    };
+
     /**
     * Initialize the controller
     */

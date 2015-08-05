@@ -129,6 +129,18 @@ angular
         return $http(req);
       };
 
+      /**
+      * Search through applications
+      */
+      this.search = function (query) {
+        var req = user.authorize({
+          method: 'GET',
+          url: config.api + '/users/application/search',
+          params: {q: query}
+        });
+        return $http(req);
+      };
+
     };
 
     return Application;
