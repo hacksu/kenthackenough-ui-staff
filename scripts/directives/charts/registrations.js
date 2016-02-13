@@ -14,6 +14,15 @@ angular
 
         var data = scope.graph;
 
+        // get total # of registrations
+        scope.total = 0;
+        for (var i = 0; i < points.length; i++) {
+          scope.total += points[i];
+        }
+        if (scope.total <= 0) {
+          return;
+        }
+
         var labels = data.months.map(function (month) {
           return month.name + ' (' + month.count + ')';
         });
@@ -40,12 +49,6 @@ angular
             showGrid: false
           }
         });
-
-        // get total # of registrations
-        scope.total = 0;
-        for (var i = 0; i < points.length; i++) {
-          scope.total += points[i];
-        }
 
       }
 
