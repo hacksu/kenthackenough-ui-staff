@@ -29,6 +29,8 @@ angular
           return 'Large';
         case 'XL':
           return 'X-Large';
+        case 'XXL':
+          return 'X-X-Large';
       }
     };
 

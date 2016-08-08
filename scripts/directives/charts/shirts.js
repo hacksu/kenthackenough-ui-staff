@@ -18,13 +18,16 @@ angular
           'Small (' + data.small + ')',
           'Medium (' + data.medium + ')',
           'Large (' + data.large + ')',
-          'X-Large (' + data.xlarge + ')'
+          'X-Large (' + data.xlarge + ')',
+          'X-X-Large (' + data.xxlarge + ')'
+
         ];
         var numbers = [
           data.small,
           data.medium,
           data.large,
-          data.xlarge
+          data.xlarge,
+          data.xxlarge
         ];
 
         new Chartist.Bar('#shirts.ct-chart', {
@@ -48,7 +51,7 @@ angular
         $("#shirts.ct-chart").height(4 * 35);
 
         // Get the total # of shirts
-        scope.total = data.small + data.medium + data.large + data.xlarge;
+        scope.total = data.small + data.medium + data.large + data.xlarge + data.xxlarge;
 
       }
 
