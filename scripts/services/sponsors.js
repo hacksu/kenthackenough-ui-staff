@@ -5,13 +5,22 @@ angular
     var Sponsors = function() {
 
         var self = this;
+        var user = new User();
         
         self.list = function() {
-            console.log('req spons');
             var req = {
                 method: 'GET',
                 url: config.api + '/sponsors'
             };
+            return $http(req);
+        };
+
+        self.addSponsor = function(newSpons) {
+            var req = user.authorize({
+                method: 'POST',
+                url: config.api + '/tmp',
+                data: newSpons
+            });
             return $http(req);
         };
 
