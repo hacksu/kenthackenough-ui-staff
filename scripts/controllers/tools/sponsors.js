@@ -15,12 +15,31 @@ angular
     
     var Models = {
       user: new User(),
-      //sponsors: new Sponsors
+      sponsors: new Sponsors()
     };
 
     /**
     * Logged in user
     */
     view.me = Models.user.getMe();
+
+    view.sponsorList = [];
+
+    function getSponsorList() {
+      Models.sponsors.list()
+        .success(function (data) {
+          view.errors = null;
+          view.sponsorList = data;
+        })
+        .error(function (data) {
+          view.errors = data.errors || ['Unable to get sponsor list.'];
+          throw data;
+        });
+    };
+
+    /**
+    * Initialize controller
+    */
+    getSponsorList();
     
 }]);

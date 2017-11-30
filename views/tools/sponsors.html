@@ -1,11 +1,28 @@
 <requirestaff user="sponsor.me" error="true">
     <staffheader></staffheader>
 
-    <div ng-include src="'/views/tools/sidebar.html'"></div>
+    <!--<div ng-include src="'/views/tools/sidebar.html'"></div>-->
     
+        <div style="display: grid; grid-template-columns: repeat(2,1fr); grid-gap: 2%; margin:2%;">
+            
+            <div id="sponsor-list" style="grid-column: 1;">
+                
+                    <div ng-repeat="item in sponsor.sponsorList" class="sponsor-data expandable-list-item" >
+                        <h4 id="sponsor-name"> {{ item.name }} </h4><br/>
+                        <a href="{{ item.link }}" id="sponsor-link"> {{ item.link }} </a><br />
+                        <div id="sponsor-amount"> ${{ item.amount }} </div><br />
+                        <img src="{{ item.logo }}" id="sponsor-img"/>
+                    </div>
+                    <br />
+                
+            </div>
 
-    <form >
+            <div style="grid-column: 2" class="expandable-list-item">
+                <form >
+                    
+                </form>  
+            </div>
 
-    </form>
+        </div>
     
 </requirestaff>
