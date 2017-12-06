@@ -26,13 +26,31 @@ angular
     view.sponsorList = [];
     view.selected = {};
 
-    function add(newSponsor) {
-      Models.sponsors.addSponsor(newSponsor);
-    }
+    view.add = function(newSponsor) {
+      Models.sponsors
+      .addSponsor(newSponsor)
+      .success(function(data) {
+        
+      })
+      .catch(function (err) {
+        throw err;
+      });
+    };
 
     view.remove = function(spons) {
       // remove by id
       console.log(spons._id);
+      Models.sponsors.remove(spons._id);
+    };
+
+    view.addOrUpdate = function (spons) {
+      console.log(spons)
+      if (spons._id) {
+        //update
+      } else {
+        view.add(spons);
+      }
+      getSponsorList();
     };
 
     function getSponsorList() {

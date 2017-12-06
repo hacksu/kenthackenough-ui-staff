@@ -18,8 +18,16 @@ angular
         self.addSponsor = function(newSpons) {
             var req = user.authorize({
                 method: 'POST',
-                url: config.api + '/tmp',
+                url: config.api + '/sponsors',
                 data: newSpons
+            });
+            return $http(req);
+        };
+
+        self.remove = function(id) {
+            var req = user.authorize({
+                method: 'DELETE',
+                url: config.api + '/sponsors/' + id
             });
             return $http(req);
         };
