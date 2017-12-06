@@ -24,6 +24,15 @@ angular
             return $http(req);
         };
 
+        self.update = function(spons) {
+            var req = user.authorize({
+                method: 'POST',
+                url: config.api + '/sponsors/' + spons._id + '/update',
+                data: spons
+            });
+            return $http(req);
+        };
+
         self.remove = function(id) {
             var req = user.authorize({
                 method: 'DELETE',

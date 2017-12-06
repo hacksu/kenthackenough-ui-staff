@@ -33,13 +33,23 @@ angular
         getSponsorList();
       })
       .catch(function (err) {
-        throw err;
+        view.errors = err || ['Unable to add sponsor.'];
+      });
+    };
+
+    view.update = function(spons) {
+      Models.sponsors
+      .update(spons)
+      .success(function(data) {
+        getSponsorList();
+      })
+      .catch(function(err) {
+        view.errors = err || ['Unable to update sponsor.'];
       });
     };
 
     view.remove = function(spons) {
       // remove by id
-      console.log(spons._id);
       Models.sponsors.remove(spons._id)
       .success (function(data) {
         getSponsorList();
@@ -52,7 +62,7 @@ angular
     view.addOrUpdate = function (spons) {
       console.log(spons)
       if (spons._id) {
-        //update
+        view.update(spons);
       } else {
         view.add(spons);
       }
