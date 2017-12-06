@@ -66,6 +66,7 @@ angular
       } else {
         view.add(spons);
       }
+      view.selected = {};      
       getSponsorList();
     };
 
