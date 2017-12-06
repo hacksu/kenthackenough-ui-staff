@@ -30,7 +30,7 @@ angular
       Models.sponsors
       .addSponsor(newSponsor)
       .success(function(data) {
-        
+        getSponsorList();
       })
       .catch(function (err) {
         throw err;
@@ -40,7 +40,13 @@ angular
     view.remove = function(spons) {
       // remove by id
       console.log(spons._id);
-      Models.sponsors.remove(spons._id);
+      Models.sponsors.remove(spons._id)
+      .success (function(data) {
+        getSponsorList();
+      })
+      .catch(function (err) {
+        view.errors = err || ['Unable to remove sponsor.'];
+      });
     };
 
     view.addOrUpdate = function (spons) {
