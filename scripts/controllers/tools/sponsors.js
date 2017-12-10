@@ -6,7 +6,7 @@ angular
     controller: 'SponsorCtrl as sponsor'
   });
 }])
-.controller('SponsorCtrl', ['User', 'Sponsors', function (User, Sponsors) {
+.controller('SponsorCtrl', ['User', 'Sponsors', 'Upload', function (User, Sponsors, Upload) {
 
     /**
     * Template interface
@@ -23,8 +23,10 @@ angular
     */
     view.me = Models.user.getMe();
 
+    view.errors= [];
     view.sponsorList = [];
     view.selected = {};
+    view.logoImg = {};
 
     view.add = function(newSponsor) {
       Models.sponsors
@@ -60,7 +62,6 @@ angular
     };
 
     view.addOrUpdate = function (spons) {
-      console.log(spons)
       if (spons._id) {
         view.update(spons);
       } else {
@@ -70,12 +71,57 @@ angular
       getSponsorList();
     };
 
+    view.uploadImg = function() {
+      if (!view.logoImg.name) {
+        console.log("No image chosen.");
+        view.errors = ["No image chosen."];
+        return;
+      }
+      
+      if (!view.selected || !view.selected._id) {
+        console.log("No sponsor selected");
+        view.errors = ["No sponsor selected"];
+        return;
+      }
+      view.errors = []
+      
+      var req = Models.user.authorize({});
+      console.log(req);
+      console.log(view.logoImg);
+      req.data = { 
+        file: view.logoImg,
+        sponsor: view.selected
+      };
+      req.url = config.api + '/sponsors/' + view.selected._id + '/logo';
+      console.log(req);
+
+      Upload.upload(req)
+      .then(function(data) {
+        // Force image refresh.
+        view.selected.logo = null
+        view.getImgSrc(view.selected);
+      }).catch(function(err){
+        throw err;
+      });
+    };
+
+    view.getImgSrc = function(item) {
+      if (!item.logo)
+      {
+        // Add the time to force image refresh.
+        item.logo = config.api + '/sponsors/' + item._id + '/logo?' + new Date().getTime();
+      }
+    };
+
     function getSponsorList() {
       Models.sponsors.list()
         .success(function (data) {
           view.errors = null;
-          view.sponsorList = data;
-          console.log(data);
+          // Initalize logo paths
+          data.forEach(element => {
+            view.getImgSrc(element);
+          });
+          view.sponsorList = data;          
         })
         .error(function (data) {
           view.errors = data.errors || ['Unable to get sponsor list.'];
