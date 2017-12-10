@@ -83,7 +83,7 @@ angular
         view.errors = ["No sponsor selected"];
         return;
       }
-      view.errors = []
+      view.errors = [];
       
       var req = Models.user.authorize({});
       console.log(req);
@@ -98,7 +98,7 @@ angular
       Upload.upload(req)
       .then(function(data) {
         // Force image refresh.
-        view.selected.logo = null
+        view.selected.logo = null;
         view.getImgSrc(view.selected);
       }).catch(function(err){
         throw err;
@@ -118,7 +118,7 @@ angular
         .success(function (data) {
           view.errors = null;
           // Initalize logo paths
-          data.forEach(element => {
+          data.forEach(function (element)  {
             view.getImgSrc(element);
           });
           view.sponsorList = data;          
