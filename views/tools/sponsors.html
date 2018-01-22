@@ -9,7 +9,6 @@
                             class="sponsor-data expandable-list-item" >
                         <h4 id="sponsor-name"> {{ item.name }} </h4><br/>
                         <a href="{{ item.link }}" id="sponsor-link"> {{ item.link }} </a><br />
-                        <div id="sponsor-amount"> ${{ item.amount }} </div><br />
                         <img src="{{ item.logo }}" /> <br />
                         <input ng-click="sponsor.selected = item" type="button" value="Edit" />
                         <input ng-click="sponsor.remove(item)" type="button" value="Delete" />
@@ -22,8 +21,11 @@
                 <input type="button" class="button" ng-click="sponsor.selected = {}; sponsor.logoImg = {};" value="Add New Sponsor"/><br />
                 <form ng-submit="sponsor.addOrUpdate(sponsor.selected)" class="expandable-list-item">
                     <h4>Sponsor Information</h4>
+                    <label>Name</label>
                     <input type="text"   required ng-model="sponsor.selected.name" />
+                    <label>Link</label>
                     <input type="url"    required ng-model="sponsor.selected.link" />
+                    <label>Payment Amount (used for ordering logos)</label>
                     <input type="number" required ng-model="sponsor.selected.amount" />
                     <input type="submit" 
                             value="{{ (!sponsor.selected._id) ? 'Add Sponsor' : 'Update' }}" 

@@ -27,7 +27,7 @@ angular
         self.update = function(spons) {
             var req = user.authorize({
                 method: 'POST',
-                url: config.api + '/sponsors/' + spons._id + '/update',
+                url: config.api + '/sponsors/' + spons._id,
                 data: spons
             });
             return $http(req);
