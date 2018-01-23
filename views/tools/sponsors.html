@@ -1,0 +1,59 @@
+<requirestaff user="sponsor.me" error="true">
+    <staffheader></staffheader>
+    
+        <div style="display: grid; grid-template-columns: repeat(2,1fr); grid-gap: 2%; margin:2%;">
+            
+            <div id="sponsor-list" style="grid-column: 1;">
+                
+                    <div ng-repeat="item in sponsor.sponsorList" 
+                            class="sponsor-data expandable-list-item" >
+                        <h4 id="sponsor-name"> {{ item.name }} </h4><br/>
+                        <a href="{{ item.link }}" id="sponsor-link"> {{ item.link }} </a><br />
+                        <img src="{{ item.logo }}" /> <br />
+                        <input ng-click="sponsor.selected = item" type="button" value="Edit" />
+                        <input ng-click="sponsor.remove(item)" type="button" value="Delete" />
+                    </div>
+                    <br />
+                
+            </div>
+
+            <div style="grid-column: 2">
+                <input type="button" class="button" ng-click="sponsor.selected = {}; sponsor.logoImg = {};" value="Add New Sponsor"/><br />
+                <form ng-submit="sponsor.addOrUpdate(sponsor.selected)" class="expandable-list-item">
+                    <h4>Sponsor Information</h4>
+                    <label>Name</label>
+                    <input type="text"   required ng-model="sponsor.selected.name" />
+                    <label>Link</label>
+                    <input type="url"    required ng-model="sponsor.selected.link" />
+                    <label>Payment Amount (used for ordering logos)</label>
+                    <input type="number" required ng-model="sponsor.selected.amount" />
+                    <input type="submit" 
+                            value="{{ (!sponsor.selected._id) ? 'Add Sponsor' : 'Update' }}" 
+                            class="button"/>
+                </form>  
+
+                <form class="expandable-list-item" ng-submit="sponsor.uploadImg()">
+                    <h4>Select A Picture</h4>
+                    <img src="{{ sponsor.selected.logo }}" 
+                         ng-if="!(sponsor.logoImg.name) && sponsor.selected.name" />
+                    <img ngf-src="sponsor.logoImg" />
+                    
+                    <br />
+                    <button ngf-select 
+                            ng-model="sponsor.logoImg" 
+                            ngf-mutliple="false" 
+                            >
+                        Select Image 
+                    </button>
+                    
+                    <br />
+                    <input type="submit" class="button" value="Update Image"/>
+                </form>
+                <div ng-repeat="err in sponsor.errors" style="color:darkred">
+                    {{ err }}
+                </div>
+            </div>
+
+        </div>
+    
+</requirestaff>
