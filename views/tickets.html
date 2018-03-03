@@ -34,12 +34,17 @@
 
     <div ng-repeat="ticket in ctrl.tickets | orderBy:'created':true | filter:query" class="row expandable-list-item">
       <!-- Header -->
-      <div class="row header cursor-pointer" ng-click="ctrl.visibility.toggle(ticket)">
-        <div class="small-9 columns">
-          <strong>{{ticket.subject}}</strong>
-        </div>
-        <div class="small-3  columns align-right">
-          <span>{{ticket.prettyStatus}}</span>
+      <div class="row header cursor-pointer">
+        <div ng-click="ctrl.visibility.toggle(ticket)">
+          <div class="small-9 columns">
+            <strong>{{ticket.subject}}</strong>
+          </div>
+          <a ng-if="ticket.prettyStatus === 'Closed'" 
+             ng-click="ctrl.deleteTicket(ticket)" 
+             class="small-1  columns">Delete</a>
+          <div class="small-2  columns align-right">
+            <span>{{ticket.prettyStatus}}</span>
+          </div>
         </div>
       </div>
       <!-- Content -->

@@ -238,6 +238,10 @@ angular
 
     };
 
+    view.deleteTicket = function(ticket) {
+      Models.ticket.delete(ticket._id);
+    };
+
     /**
     * Initialize controller
     */
