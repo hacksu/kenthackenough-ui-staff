@@ -39,9 +39,6 @@
           <div class="small-9 columns">
             <strong>{{ticket.subject}}</strong>
           </div>
-          <a ng-if="ticket.prettyStatus === 'Closed'" 
-             ng-click="ctrl.deleteTicket(ticket)" 
-             class="small-1  columns">Delete</a>
           <div class="small-2  columns align-right">
             <span>{{ticket.prettyStatus}}</span>
           </div>
@@ -119,6 +116,10 @@
               {{ticket.body}}
             </div>
           </div>
+          <!-- Delete a closed ticket -->
+          <Button ng-if="ticket.prettyStatus === 'Closed'" 
+             ng-click="ctrl.deleteTicket(ticket)" 
+             style="background-color: darkred;">Delete</button>
         </div>
       </div>
     </div>
